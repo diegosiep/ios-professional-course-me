@@ -48,8 +48,8 @@ extension LoginView {
         divider.translatesAutoresizingMaskIntoConstraints = true
         divider.backgroundColor = .secondarySystemFill
         
-        self.layer.cornerRadius = 10
-  
+        self.layer.cornerRadius = 5
+        
         
     }
     
@@ -57,8 +57,8 @@ extension LoginView {
         stackView.addArrangedSubview(userNameTextField)
         stackView.addArrangedSubview(divider)
         stackView.addArrangedSubview(passwordTextField)
-      
-   
+        
+        
         
         addSubview(stackView)
         
@@ -68,10 +68,10 @@ extension LoginView {
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
             bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1),
             divider.heightAnchor.constraint(equalToConstant: 1)
-        
+            
             
         ])
-    
+        
     }
 }
 
@@ -83,13 +83,7 @@ extension LoginView: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != ""  {
-            return true
-        } else {
-            return false
-        }
-        
-        
+        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
