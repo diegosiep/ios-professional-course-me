@@ -7,13 +7,24 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func didLogin()
+}
+
+class LoginViewController: UIViewController {
+    
     let loginView = LoginView()
     let signInButton = UIButton()
     let errorMessageLabel = UILabel()
     let appTitleLabel = UILabel()
     let sloganLabel = UILabel()
+    
+    // 'weak' will be used to avoid 'retain cycles', to prevent memory leakages. AppDelegate already has a strong refernce to LoginViewController, and we want a weak reference to the Delegate to avoid retain cycles.
+    weak var delegate: LoginViewControllerDelegate?
     
     var username: String? {
         return loginView.userNameTextField.text
@@ -27,6 +38,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        signInButton.configuration?.showsActivityIndicator = false
     }
     
 }
@@ -73,7 +89,7 @@ extension LoginViewController {
         
         //        Always remember the reference for setting up new anchors for new views, has to be the initial anchors(s) set up for the first setup view --> particularly applies in the following example, where you'd want a button to always layout right after the bottom anchor of the loginView. For any other view(s) added after that, the last previous configured view must be used to establish layout constraints properly (i.e., instead of the initial anchor for the initial or first added view, you should choose the constratint reference for the very last view you configured).
         
-//        TItle and slogan labels
+        //        TItle and slogan labels
         NSLayoutConstraint.activate([
             appTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sloganLabel.topAnchor.constraint(equalToSystemSpacingBelow: appTitleLabel.bottomAnchor, multiplier: 3),
@@ -133,6 +149,7 @@ extension LoginViewController {
         
         if username == "Kevin" && password == "Welcome" {
             signInButton.configuration?.showsActivityIndicator = true
+            delegate?.didLogin()
         } else {
             configureView(withMessage: "Incorrect username / password")
         }
