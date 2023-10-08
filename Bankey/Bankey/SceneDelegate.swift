@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = loginViewController
+//            window.rootViewController = loginViewController
+            window.rootViewController = AccountSummaryViewController()
             onboardingContainerViewController.delegate = self
             loginViewController.delegate = self
             dummyViewController.logoutDelegate = self
