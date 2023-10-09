@@ -10,11 +10,11 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     let games = [
-    "Pacman",
-    "Space Invaders",
-    "Space Patrol",
-    "Super Mario 64",
-    "Super Mario Sunshine"
+        "Pacman",
+        "Space Invaders",
+        "Space Patrol",
+        "Super Mario 64",
+        "Super Mario Sunshine"
     ]
     
     var tableView = UITableView()
@@ -22,14 +22,32 @@ class AccountSummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupHeaderView()
         
     }
     
 }
 
 extension AccountSummaryViewController {
-   private func setup() {
+    private func setup() {
         setupTableView()
+    }
+    
+    private func setupHeaderView() {
+        let header = AccountSummaryHeaderView(frame: .zero)
+        
+        //        UIScreen.main.bounds.width will no longer work. the following property must be accessed, instead.
+        let scenes  = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        guard let screenBoundsWidth = window?.screen.bounds.width else { return }
+        
+        var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        size.width = screenBoundsWidth
+        header.frame.size = size
+        
+        tableView.tableHeaderView = header
+        
     }
     
     private func setupTableView() {
@@ -38,6 +56,7 @@ extension AccountSummaryViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
+        
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -68,3 +87,5 @@ extension AccountSummaryViewController: UITableViewDataSource {
 extension AccountSummaryViewController: UITableViewDelegate {
     
 }
+
+
