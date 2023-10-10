@@ -42,6 +42,7 @@ extension AccountSummaryViewController {
         let window = windowScene?.windows.first
         guard let screenBoundsWidth = window?.screen.bounds.width else { return }
         
+        
         var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         size.width = screenBoundsWidth
         header.frame.size = size
