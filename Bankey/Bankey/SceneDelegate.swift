@@ -6,10 +6,11 @@
 //
 
 import UIKit
+
 let appColor: UIColor = .systemTeal
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
+   
     var window: UIWindow?
     let loginViewController = LoginViewController()
     let onboardingContainerViewController = OnboardingContainerViewController()
