@@ -1,3 +1,5 @@
 # ios-professional-course
 
-HEllo!
+Hello!
+
+These are the Xcode files for the Professional iOS Development Course I'm taking from Swift Arcade by Jonathan Rasmusson.
