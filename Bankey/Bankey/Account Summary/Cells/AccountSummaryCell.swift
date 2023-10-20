@@ -9,6 +9,22 @@ import UIKit
 
 
 class AccountSummaryCell: UITableViewCell {
+    
+    /*   By keeping the enum and the ViewModel struct inside of the AccountSummaryCell class, you're basically telling the reader of this code that you'd like them to know that these data types are VERY specific to the AccountSummaryCell class; i.e. they should only be reused for this type of cell. You could declare them in a separate file but this is more ideal. */
+    
+    enum AccountType: String {
+        case Banking
+        case CreditCard = "Credit Card"
+        case Investment
+    }
+    
+    struct ViewModel {
+        let accountType: AccountType
+        let accountName: String
+    }
+    
+    let viewModel: ViewModel? = nil
+    
     let typeLabel = UILabel()
     let nameLabel = UILabel()
     let divider = UIView()
@@ -94,7 +110,7 @@ extension AccountSummaryCell {
     }
     
     
-//    A way to cutomise any kind of String in your app. Really useful for giving unique styles to text in your app. There are many attributes that you can experiment with.
+    //    A way to cutomise any kind of String in your app. Really useful for giving unique styles to text in your app. There are many attributes that you can experiment with.
     private func makeFormattedBalance(dollars: String, cents: String) -> NSMutableAttributedString {
         let dollarSignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .callout), .baselineOffset: 8]
         let dollarAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title1)]
@@ -110,6 +126,25 @@ extension AccountSummaryCell {
         return rootString
     }
     
+}
+
+extension AccountSummaryCell {
+    func configure(with vm: ViewModel) {
+        typeLabel.text = vm.accountType.rawValue
+        nameLabel.text = vm.accountName
+        
+        switch vm.accountType {
+        case .Banking:
+            divider.backgroundColor = appColor
+            balanceLabel.text = "Current Balance"
+        case .CreditCard:
+            divider.backgroundColor = .systemOrange
+            balanceLabel.text = "Current Balance"
+        case .Investment:
+            divider.backgroundColor = .systemPurple
+            balanceLabel.text = "Value"
+        }
+    }
 }
 
 
