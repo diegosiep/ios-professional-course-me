@@ -14,20 +14,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let loginViewController = LoginViewController()
     let onboardingContainerViewController = OnboardingContainerViewController()
-    let dummyViewController = DummyViewController()
     let mainViewController = MainViewController()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-//            window.rootViewController = loginViewController
-            window.rootViewController = AccountSummaryViewController()
+            window.backgroundColor = .systemBackground
             onboardingContainerViewController.delegate = self
             loginViewController.delegate = self
-            dummyViewController.logoutDelegate = self
-            window.backgroundColor = appColor
-            self.window = window
+           
+            let vc = mainViewController
+            vc.setStatusBar()
+            
+            UINavigationBar.appearance().isTranslucent = false
+            UINavigationBar.appearance().backgroundColor = appColor
+            window.rootViewController = vc
             window.makeKeyAndVisible()
+            
+            self.window = window
+                
         }
     }
     
