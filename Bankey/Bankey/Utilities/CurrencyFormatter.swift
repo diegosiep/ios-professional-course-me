@@ -25,7 +25,7 @@ struct CurrencyFormatter {
     }
     
     
-//    Converts 929466 > 929,466
+    //    Converts 929466 > 929,466
     private func convertDollar(_ dollarPart: Double) -> String {
         let dollarsWithDecimal = dollarsFormatted(dollarPart) // "$929,466.00"
         let formatter = NumberFormatter()
@@ -48,7 +48,7 @@ struct CurrencyFormatter {
         return cents
     }
     
-//    Converts 929466 > $929,466.00
+    //    Converts 929466 > $929,466.00
     func dollarsFormatted(_ dollars: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
