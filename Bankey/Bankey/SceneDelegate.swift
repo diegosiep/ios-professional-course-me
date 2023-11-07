@@ -10,7 +10,7 @@ import UIKit
 let appColor: UIColor = .systemTeal
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-   
+    
     var window: UIWindow?
     let loginViewController = LoginViewController()
     let onboardingContainerViewController = OnboardingContainerViewController()
@@ -22,34 +22,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.backgroundColor = .systemBackground
             onboardingContainerViewController.delegate = self
             loginViewController.delegate = self
-           
-            let vc = mainViewController
-            vc.setStatusBar()
-            
-            UINavigationBar.appearance().isTranslucent = false
-            UINavigationBar.appearance().backgroundColor = appColor
-            window.rootViewController = vc
-            window.makeKeyAndVisible()
-            
             self.window = window
-                
+            displayLogin()
+
+
         }
     }
     
+    private func displayLogin() {
+        setRootViewController(loginViewController)
+    }
+    
+    private func displayNextScreen() {
+        if LocalState.hasOnboarded {
+            prepMainView()
+            setRootViewController(mainViewController)
+        } else {
+            setRootViewController(onboardingContainerViewController)
+        }
+    }
+    
+    private func prepMainView() {
+        mainViewController.setStatusBar()
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+    }
 }
 
 extension SceneDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate, LogoutDelegate {
     func didFinishOnboarding() {
         LocalState.hasOnboarded = true
+        prepMainView()
         setRootViewController(mainViewController)
     }
     
     func didLogin() {
-        if LocalState.hasOnboarded {
-            setRootViewController(mainViewController)
-        } else {
-            setRootViewController(onboardingContainerViewController)
-        }
+        displayNextScreen()
     }
     
     func didLogout() {
@@ -60,11 +68,7 @@ extension SceneDelegate: LoginViewControllerDelegate, OnboardingContainerViewCon
 
 extension SceneDelegate {
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
-        guard animated, let window = self.window else {
-            self.window?.rootViewController = vc
-            self.window?.makeKeyAndVisible()
-            return
-        }
+        guard let window = self.window else { return }
         window.rootViewController = vc
         window.makeKeyAndVisible()
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil, completion: nil)
