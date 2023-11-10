@@ -15,6 +15,7 @@ class LoginView: UIView {
     let stackView = UIStackView()
     let divider = UIView()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         style()
@@ -41,6 +42,7 @@ extension LoginView {
         userNameTextField.delegate = self
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.enablePasswordToggle()
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
@@ -90,3 +92,7 @@ extension LoginView: UITextFieldDelegate {
         
     }
 }
+
+// MARK: Actions
+
+

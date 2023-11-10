@@ -22,11 +22,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.backgroundColor = .systemBackground
             onboardingContainerViewController.delegate = self
             loginViewController.delegate = self
+            registerForNotifications()
             self.window = window
             displayLogin()
-
-
+            
         }
+    }
+    
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didLogout), name: .logout, object: nil)
     }
     
     private func displayLogin() {
@@ -60,7 +64,7 @@ extension SceneDelegate: LoginViewControllerDelegate, OnboardingContainerViewCon
         displayNextScreen()
     }
     
-    func didLogout() {
+    @objc func didLogout() {
         setRootViewController(loginViewController)
     }
     
