@@ -34,6 +34,14 @@ class LoginViewController: UIViewController {
         return loginView.passwordTextField.text
     }
     
+    //    animation
+    var leadingEdgeOnScreen = CGFloat(16)
+    var leadingEdgeOffScreen = CGFloat(-1000)
+    
+    var titleLeadingAnchor: NSLayoutConstraint?
+    
+    var sloganLeadingAnchor: NSLayoutConstraint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -45,6 +53,10 @@ class LoginViewController: UIViewController {
         signInButton.configuration?.showsActivityIndicator = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animate()
+    }
 }
 
 extension LoginViewController {
@@ -54,6 +66,7 @@ extension LoginViewController {
         appTitleLabel.textAlignment = .center
         appTitleLabel.font = .systemFont(ofSize: 30, weight: .bold)
         appTitleLabel.text = "Bankey"
+        appTitleLabel.alpha = 0
         
         sloganLabel.translatesAutoresizingMaskIntoConstraints = false
         sloganLabel.numberOfLines = 0
@@ -61,6 +74,7 @@ extension LoginViewController {
         sloganLabel.font = .systemFont(ofSize: 18, weight: .regular)
         sloganLabel.text = "Your premium source for all things banking!"
         sloganLabel.adjustsFontForContentSizeCategory = true
+        sloganLabel.alpha = 0
         
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -91,16 +105,19 @@ extension LoginViewController {
         
         //        TItle and slogan labels
         NSLayoutConstraint.activate([
-            appTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            appTitleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
             sloganLabel.topAnchor.constraint(equalToSystemSpacingBelow: appTitleLabel.bottomAnchor, multiplier: 3),
             loginView.topAnchor.constraint(equalToSystemSpacingBelow: sloganLabel.bottomAnchor, multiplier: 3),
-            sloganLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
-            sloganLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            sloganLabel.trailingAnchor.constraint(equalTo: appTitleLabel.trailingAnchor),
+            
             
         ])
         
+        titleLeadingAnchor = appTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingEdgeOffScreen)
+        titleLeadingAnchor?.isActive = true
         
-        
+        sloganLeadingAnchor = sloganLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingEdgeOffScreen)
+        sloganLeadingAnchor?.isActive = true
         
         //        LoginView
         NSLayoutConstraint.activate([
@@ -139,22 +156,22 @@ extension LoginViewController {
     func login() {
         delegate?.didLogin()
         
-//        guard let username = username, let password = password else {
-//            assertionFailure("Username / password should never be nil")
-//            return
-//        }
-//        
-//        if username.isEmpty || password.isEmpty {
-//            configureView(withMessage: "Username / password cannot be blank")
-//            return
-//        }
-//        
-//        if username == "Kevin" && password == "Welcome" {
-//            signInButton.configuration?.showsActivityIndicator = true
-//            delegate?.didLogin()
-//        } else {
-//            configureView(withMessage: "Incorrect username / password")
-//        }
+        //        guard let username = username, let password = password else {
+        //            assertionFailure("Username / password should never be nil")
+        //            return
+        //        }
+        //
+        //        if username.isEmpty || password.isEmpty {
+        //            configureView(withMessage: "Username / password cannot be blank")
+        //            return
+        //        }
+        //
+        //        if username == "Kevin" && password == "Welcome" {
+        //            signInButton.configuration?.showsActivityIndicator = true
+        //            delegate?.didLogin()
+        //        } else {
+        //            configureView(withMessage: "Incorrect username / password")
+        //        }
     }
     
     private func configureView(withMessage message: String) {
@@ -164,3 +181,36 @@ extension LoginViewController {
     
 }
 
+// MARK: Animations
+extension LoginViewController {
+    private func animate() {
+        let duration = 0.8
+        let animator1 = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.titleLeadingAnchor?.constant = self.leadingEdgeOnScreen
+            self.view.layoutIfNeeded()
+        }
+        
+        animator1.startAnimation()
+        
+        let animator2 = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.sloganLeadingAnchor?.constant = self.leadingEdgeOnScreen
+            self.view.layoutIfNeeded()
+        }
+        
+        animator2.startAnimation(afterDelay: 0.2)
+        
+        let animator3 = UIViewPropertyAnimator(duration: duration*2, curve: .easeInOut) {
+            self.appTitleLabel.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+        
+        animator3.startAnimation(afterDelay: 0.2)
+        
+        let animator4 = UIViewPropertyAnimator(duration: duration*2, curve: .easeInOut) {
+            self.sloganLabel.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+        
+        animator4.startAnimation(afterDelay: 0.2)
+    }
+}
