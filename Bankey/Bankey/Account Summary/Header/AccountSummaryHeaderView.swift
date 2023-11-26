@@ -10,6 +10,7 @@ import UIKit
 class AccountSummaryHeaderView: UIView {
     
     @IBOutlet var contentView: UIView!
+    let shakeyBellView =  ShakeyBellView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,6 +30,7 @@ class AccountSummaryHeaderView: UIView {
         let bundle = Bundle(for: AccountSummaryHeaderView.self)
         bundle.loadNibNamed("AccountSummaryHeaderView", owner: self, options: nil)
         addSubview(contentView)
+       
         contentView.backgroundColor = appColor
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,13 +39,25 @@ class AccountSummaryHeaderView: UIView {
         contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
+        setupShakeyBell()
+        
         
     }
 }
 
 
 extension AccountSummaryHeaderView {
-    
+    func setupShakeyBell() {
+        addSubview(shakeyBellView)
+        shakeyBellView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            shakeyBellView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            shakeyBellView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+  
+       
+        
+    }
 }
 
 
