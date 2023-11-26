@@ -2,4 +2,4 @@
 
 Hello!
 
-These are the Xcode files for the Professional iOS Development Course I'm taking from Swift Arcade by Jonathan Rasmusson.
+These are the Xcode files for the Professional iOS Development Course I'm taking by Swift Arcade (Jonathan Rasmusson).
