@@ -5,7 +5,7 @@
 //  Created by Diego Sierra on 15/11/23.
 //
 
-/// RECOMMEND CHECKING THE FILE 'TestRigForShakeyBell' to fully understand how this animation is working.
+/// RECOMMEND CHECKING THE FILE 'TestRigForShakeyBell' to fully understand how this animation works.
 
 import UIKit
 

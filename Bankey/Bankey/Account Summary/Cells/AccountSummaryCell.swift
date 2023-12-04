@@ -7,16 +7,18 @@
 
 import UIKit
 
+enum AccountType: String, Codable {
+    case Banking
+    case CreditCard
+    case Investment
+}
 
 class AccountSummaryCell: UITableViewCell {
     
     /*   By keeping the enum and the ViewModel struct inside of the AccountSummaryCell class, you're basically telling the reader of this code that you'd like them to know that these data types are VERY specific to the AccountSummaryCell class; i.e. they should only be reused for this type of cell. You could declare them in a separate file but this is more ideal. */
+    //    In a later lesson you take out the AccountType enum, to make it available to other types in this project, in order to support networking processes.
     
-    enum AccountType: String {
-        case Banking
-        case CreditCard = "Credit Card"
-        case Investment
-    }
+    
     
     struct ViewModel {
         let accountType: AccountType

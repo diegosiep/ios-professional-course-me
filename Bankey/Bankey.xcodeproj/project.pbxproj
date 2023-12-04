@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C41E00F82AB7C959005462B5 /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E00F72AB7C959005462B5 /* OnboardingContainerViewController.swift */; };
 		C41E00FC2AB80EA4005462B5 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E00FB2AB80EA4005462B5 /* OnboardingViewController.swift */; };
+		C43DA6B42B1BD66900534966 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DA6B32B1BD66900534966 /* Date+Utils.swift */; };
+		C43DA6B62B1BD99500534966 /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DA6B52B1BD99500534966 /* AccountSummaryViewController+Networking.swift */; };
 		C471C3D12AC2646F00ACA6A4 /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C471C3D02AC2646F00ACA6A4 /* DummyViewController.swift */; };
 		C472C9A62AFCAF7F00B163B3 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472C9A52AFCAF7F00B163B3 /* NSNotificationName.swift */; };
 		C4B1DAA12AE795BC0042D787 /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1DAA02AE795BC0042D787 /* CurrencyFormatterTests.swift */; };
@@ -52,6 +54,8 @@
 		C409DB612AAAE9390066D1C2 /* BankeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41E00F72AB7C959005462B5 /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		C41E00FB2AB80EA4005462B5 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		C43DA6B32B1BD66900534966 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
+		C43DA6B52B1BD99500534966 /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
 		C471C3D02AC2646F00ACA6A4 /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		C472C9A52AFCAF7F00B163B3 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
 		C4B1DA972AE794480042D787 /* BankeyUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankeyUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,12 +136,13 @@
 		C4B7032C2AC6428700FFECBC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C4BD0F882AE5A14C00B12217 /* DecimalUtil.swift */,
-				C4B853D22AFDA5FB001DE920 /* UITextField+SecureToggle.swift */,
-				C4B7032D2AC6429500FFECBC /* LocalState.swift */,
-				C4BA8B662AC8E6EF00436E69 /* UIViewController+Utils.swift */,
 				C4BD0F8A2AE5A25400B12217 /* CurrencyFormatter.swift */,
+				C43DA6B32B1BD66900534966 /* Date+Utils.swift */,
+				C4BD0F882AE5A14C00B12217 /* DecimalUtil.swift */,
+				C4B7032D2AC6429500FFECBC /* LocalState.swift */,
 				C472C9A52AFCAF7F00B163B3 /* NSNotificationName.swift */,
+				C4B853D22AFDA5FB001DE920 /* UITextField+SecureToggle.swift */,
+				C4BA8B662AC8E6EF00436E69 /* UIViewController+Utils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				C4F95D9E2AD0E55F00718071 /* AccountSummaryViewController.swift */,
+				C43DA6B52B1BD99500534966 /* AccountSummaryViewController+Networking.swift */,
 				C4E9E6F12AD7410A00549E3F /* Header */,
 				C4E9E6F22AD759D100549E3F /* Cells */,
 			);
@@ -370,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4D44AC42AD333E000298B1A /* AccountSummaryHeaderView.swift in Sources */,
+				C43DA6B62B1BD99500534966 /* AccountSummaryViewController+Networking.swift in Sources */,
 				C4E9E6F42AD759F700549E3F /* AccountSummaryCell.swift in Sources */,
 				C4F9018C2B05916900CC6FD3 /* ShakeyBellView.swift in Sources */,
 				C471C3D12AC2646F00ACA6A4 /* DummyViewController.swift in Sources */,
@@ -387,6 +394,7 @@
 				C4BD0F892AE5A14C00B12217 /* DecimalUtil.swift in Sources */,
 				C4B7032E2AC6429500FFECBC /* LocalState.swift in Sources */,
 				C4BA8B692AC8E8DC00436E69 /* MainViewController.swift in Sources */,
+				C43DA6B42B1BD66900534966 /* Date+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
