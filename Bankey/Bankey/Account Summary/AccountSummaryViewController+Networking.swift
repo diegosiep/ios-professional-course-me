@@ -26,6 +26,14 @@ struct Profile: Codable {
     }
 }
 
+struct Account: Codable {
+    let id: String
+    let type: AccountType
+    let name: String
+    let amount: Decimal
+    let createdDateTime: Date
+    
+}
 
 extension AccountSummaryViewController {
     func fetchProfile(forUserId userId: String, completion: @escaping (Result<Profile,NetworkError>) -> Void) {
@@ -47,15 +55,6 @@ extension AccountSummaryViewController {
                 }
             }
         }.resume()
-        
-    }
-    
-    struct Account: Codable {
-        let id: String
-        let type: AccountType
-        let name: String
-        let amount: Decimal
-        let createdDateTime: Date
         
     }
     
