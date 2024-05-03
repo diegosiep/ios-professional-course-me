@@ -140,5 +140,8 @@ extension AccountSummaryCell {
     }
 }
 
-
+@available (iOS 17, *)
+#Preview {
+    AccountSummaryCell()
+}
 
