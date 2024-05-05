@@ -125,6 +125,7 @@ extension AccountSummaryViewController {
     }
     
     @objc func refreshContent() {
+        
         fetchData()
     }
 }
